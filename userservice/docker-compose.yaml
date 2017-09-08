@@ -1,0 +1,32 @@
+---
+version: "2"
+
+services:
+  userservice:
+    build: .
+    container_name: user_app
+    depends_on:
+        - mongodbservice
+#        - redisservice
+    volumes:
+       - .:/var/www/userservice
+    ports:
+      - "5000:5000"
+    expose:
+      - "5000"
+    restart:  always
+  mongodbservice:
+    image: mongo
+    container_name: mongodb_container
+    ports:
+      - "27017:27017"
+    restart:  always
+#  redisservice:
+#    image: redis:alpine
+#    container_name: redis-servre_container
+#    ports:
+#      - "6379:6379"
+#    restart:  always
+
+
+

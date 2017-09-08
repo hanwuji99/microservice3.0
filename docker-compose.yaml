@@ -1,0 +1,59 @@
+---
+version: "2"
+
+services:
+#  userservice:
+#    build:
+#        context: ./userservice/
+#        dockerfile: Dockerfile
+#    volumes:
+#      - .:/var/www/microservice2.0/userservice
+#    ports:
+#      - "5000:5000"
+#    restart:  always
+#
+#  movieservice:
+#    build:
+#        context: ./movieservice/
+#        dockerfile: Dockerfile
+#    volumes:
+#      - .:/var/www/microservice2.0/movieservice
+#    ports:
+#      - "5001:5001"
+#    expose:
+#      - "5001"
+#    restart:  always
+#
+#  showtimeservice:
+#    build:
+#        context: ./showtimeservice/
+#        dockerfile: Dockerfile
+#    volumes:
+#      - .:/var/www/microservice2.0/showtimeservice
+#    ports:
+#      - "5002:5002"
+#    restart:  always
+#
+#  bookingservice:
+#    build:
+#        context: ./bookingservice/
+#        dockerfile: Dockerfile
+#    volumes:
+#       - .:/var/www/microservice2.0/bookingservice
+#    ports:
+#      - "5003:5003"
+#    expose:
+#      - "5003"
+#    restart:  always
+#
+  collectionservice:
+    build:
+        context: ./collectionservice/
+        dockerfile: Dockerfile
+    volumes:
+       - .:/var/www/microservice2.0/collectionservice
+    ports:
+      - "5004:5004"
+    expose:
+      - "5004"
+    restart:  always
