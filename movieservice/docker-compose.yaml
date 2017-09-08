@@ -1,0 +1,23 @@
+---
+version: "2"
+
+services:
+  movieservice:
+    build: .
+    volumes:
+      - .:/var/www/movieservice
+    container_name: movie_app
+    depends_on:
+        - mongodbservice
+    ports:
+      - "5001:5001"
+    expose:
+      - "5001"
+    restart:  always
+
+  mongodbservice:
+    image: mongo
+    container_name: mongodb_container
+    ports:
+      - "27017:27017"
+    restart:  always

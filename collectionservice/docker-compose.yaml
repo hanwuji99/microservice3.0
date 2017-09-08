@@ -1,0 +1,23 @@
+---
+version: "2"
+
+services:
+  collectionservice:
+    build: .
+    volumes:
+       - .:/var/www/collectionservice
+    container_name: collection_app
+    depends_on:
+        - mongodbservice
+    ports:
+      - "5004:5004"
+    expose:
+      - "5004"
+    restart:  always
+
+  mongodbservice:
+    image: mongo
+    container_name: mongodb_container
+    ports:
+      - "27017:27017"
+    restart:  always
