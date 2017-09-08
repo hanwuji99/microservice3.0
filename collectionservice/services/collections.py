@@ -61,8 +61,7 @@ def clean():
 @app.route("/all/<username>/<movieid>")
 def collection_movies(username, movieid):
     try:
-        # collection_movies = requests.get("http://127.0.0.1:5001/all/{}".format(movieid))
-        collection_movies = requests.get("http://movieservice/all/{}".format(movieid))
+        collection_movies = requests.get("http://movieservice:5001/all/{}".format(movieid))
     except requests.exceptions.ConnectionError:
         raise ServiceUnavailable("The Movie service is unavailable.")
 

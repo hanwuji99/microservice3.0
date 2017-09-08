@@ -48,7 +48,7 @@ def find_by(username):
 @app.route("/all/<username>/collections")
 def user_collections(username):
     try:
-        users_collections = requests.get("http://collectionservice/all/{}".format(username))
+        users_collections = requests.get("http://collectionservice:5004/all/{}".format(username))
 
     except requests.exceptions.ConnectionError:
         raise ServiceUnavailable("The Collections service is unavailable.")
