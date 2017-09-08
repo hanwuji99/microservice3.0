@@ -62,7 +62,7 @@ def clean():
 def collection_movies(username, movieid):
     try:
         # collection_movies = requests.get("http://127.0.0.1:5001/all/{}".format(movieid))
-        collection_movies = requests.get("movieservice/all/{}".format(movieid))
+        collection_movies = requests.get("http://movieservice/all/{}".format(movieid))
     except requests.exceptions.ConnectionError:
         raise ServiceUnavailable("The Movie service is unavailable.")
 
