@@ -16,6 +16,8 @@ services:
     expose:
       - "5004"
     restart:  always
+    networks:
+      - swarm_test
 
   userservice:
     build:
@@ -31,6 +33,8 @@ services:
     expose:
       - "5000"
     restart:  always
+    networks:
+      - swarm_test
 
   movieservice:
     build:
@@ -46,6 +50,8 @@ services:
     expose:
       - "5001"
     restart:  always
+    networks:
+      - swarm_test
 
   mongodbservice:
     image: mongo
@@ -53,3 +59,5 @@ services:
     ports:
       - "27017:27017"
     restart:  always
+    networks:
+      - swarm_test
