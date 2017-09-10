@@ -14,8 +14,7 @@ services:
     expose:
       - "5000"
     restart:  always
-    networks:
-      - ingress
+    network_mode: overlay
   mongodbservice:
     image: mongo
     container_name: mongodb_container
