@@ -14,10 +14,15 @@ services:
     expose:
       - "5000"
     restart:  always
-
+    networks:
+      - ingress
   mongodbservice:
     image: mongo
     container_name: mongodb_container
     ports:
       - "27017:27017"
     restart:  always
+    networks:
+      - ingress
+
+
