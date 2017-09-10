@@ -14,12 +14,11 @@ services:
     expose:
       - "5000"
     restart:  always
-    network_mode: "service:[mongodbservice]"
+    network_mode: "overlay"
   mongodbservice:
     image: mongo
     container_name: mongodb_container
     ports:
       - "27017:27017"
     restart:  always
-    network_mode: "overlay"
 
