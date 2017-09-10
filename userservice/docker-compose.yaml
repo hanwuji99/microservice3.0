@@ -22,8 +22,5 @@ services:
     ports:
       - "27017:27017"
     restart:  always
-    networks:
-      - overlay
-      
-
+    network_mode: overlay
 
