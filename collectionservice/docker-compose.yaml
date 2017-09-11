@@ -25,7 +25,7 @@ services:
       - collectionnet
 networks:
   collectionnet:
-    driver: overlay
+    external: true
 
 
 
