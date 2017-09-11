@@ -58,11 +58,7 @@ services:
     restart:  always
     networks:
       - servicenet
-
-networks:
-      - servicenet
 networks:
   servicenet:
     driver: overlay
 
-    
