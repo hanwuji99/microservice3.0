@@ -2,6 +2,12 @@
 version: "3"
 
 services:
+  mongodbservice:
+    image: mongo
+    container_name: mongodb_container
+    ports:
+      - "27017:27017"
+    restart:  always
   userservice:
     build: .
     volumes:
@@ -22,10 +28,4 @@ networks:
     driver: overlay
 
 
-  mongodbservice:
-    image: mongo
-    container_name: mongodb_container
-    ports:
-      - "27017:27017"
-    restart:  always
 
