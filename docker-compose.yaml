@@ -1,7 +1,14 @@
 ---
-version: "2"
+version: "3"
 
 services:
+  mongodbservice:
+    image: mongo
+    container_name: mongodb_container
+    ports:
+      - "27017:27017"
+    restart:  always
+
   collectionservice:
     build:
         context: ./collectionservice/
@@ -16,8 +23,8 @@ services:
     expose:
       - "5004"
     restart:  always
-
-
+    networks:
+      - servicenet
   userservice:
     build:
         context: ./userservice/
@@ -32,7 +39,8 @@ services:
     expose:
       - "5000"
     restart:  always
-
+    networks:
+      - servicenet
 
   movieservice:
     build:
@@ -48,12 +56,13 @@ services:
     expose:
       - "5001"
     restart:  always
+    networks:
+      - servicenet
 
+networks:
+      - servicenet
+networks:
+  servicenet:
+    driver: overlay
 
-  mongodbservice:
-    image: mongo
-    container_name: mongodb_container
-    ports:
-      - "27017:27017"
-    restart:  always
-
+    

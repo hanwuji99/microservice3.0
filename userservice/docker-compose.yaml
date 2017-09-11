@@ -21,11 +21,7 @@ services:
     expose:
       - "5000"
     restart:  always
-    networks:
-      - usernet
-networks:
-  usernet:
-    driver: overlay
+
 
 
 

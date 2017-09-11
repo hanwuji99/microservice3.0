@@ -21,11 +21,7 @@ services:
     expose:
       - "5000"
     restart:  always
-    networks:
-      - collectionnet
-networks:
-  collectionnet:
-    external: true
+
 
 
 
