@@ -11,21 +11,23 @@ services:
   collectionservice:
     build: .
     volumes:
-       - .:/var/www/collectionservice
+      - .:/var/www/collectionservice
     container_name: collection_app
     depends_on:
         - mongodbservice
     hostname: collectionservice
     ports:
-      - "5004:5004"
+      - "5000:5000"
     expose:
-      - "5004"
+      - "5000"
     restart:  always
     networks:
       - collectionnet
 networks:
   collectionnet:
     driver: overlay
+
+
 
 
 
