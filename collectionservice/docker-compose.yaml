@@ -1,5 +1,5 @@
 ---
-version: "3"
+version: "2"
 
 services:
   mongodbservice:
@@ -21,7 +21,5 @@ services:
     expose:
       - "5004"
     restart:  always
-    networks:
-      - usernet
-
+    network_mode: "overlay"
 
