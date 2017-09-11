@@ -14,8 +14,8 @@ services:
     expose:
       - "5000"
     restart:  always
-    networks:
-      - usernet
+#    networks:
+#      - usernet
 
   mongodbservice:
     image: mongo
@@ -23,11 +23,11 @@ services:
     ports:
       - "27017:27017"
     restart:  always
-    networks:
-      - usernet
-networks:
-  usernet:
-    driver: overlay
+#    networks:
+#      - usernet
+#networks:
+#  usernet:
+#    driver: overlay
 
 
 
