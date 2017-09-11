@@ -1,5 +1,5 @@
 ---
-version: "2"
+version: "3"
 
 services:
   userservice:
@@ -9,13 +9,18 @@ services:
     container_name: user_app
     depends_on:
         - mongodbservice
+    hostname: userservice
     ports:
       - "5000:5000"
     expose:
       - "5000"
     restart:  always
-#    networks:
-#      - usernet
+    networks:
+      - usernet
+networks:
+  usernet:
+    driver: overlay
+
 
   mongodbservice:
     image: mongo
@@ -23,12 +28,4 @@ services:
     ports:
       - "27017:27017"
     restart:  always
-#    networks:
-#      - usernet
-#networks:
-#  usernet:
-#    driver: overlay
-
-
-
 
