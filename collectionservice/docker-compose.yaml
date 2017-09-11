@@ -1,7 +1,14 @@
 ---
-version: "2"
+version: "3"
 
 services:
+  mongodbservice:
+    image: mongo
+    container_name: mongodb_container
+    ports:
+      - "27017:27017"
+    restart:  always
+
   collectionservice:
     build: .
     volumes:
@@ -14,10 +21,8 @@ services:
     expose:
       - "5004"
     restart:  always
-
-  mongodbservice:
-    image: mongo
-    container_name: mongodb_container
-    ports:
-      - "27017:27017"
-    restart:  always
+    networks:
+      - collectionnet
+networks:
+  collectionnet:
+    driver: overlay
