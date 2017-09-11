@@ -8,7 +8,6 @@ services:
     ports:
       - "27017:27017"
     restart:  always
-
   collectionservice:
     build: .
     volumes:
@@ -23,9 +22,6 @@ services:
       - "5004"
     restart:  always
     networks:
-      - collectionnet
-networks:
-  collectionnet:
-    external: true
+      - usernet
 
-      
+
