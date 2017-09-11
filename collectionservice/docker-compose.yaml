@@ -16,6 +16,7 @@ services:
     container_name: collection_app
     depends_on:
         - mongodbservice
+    hostname: collectionservice
     ports:
       - "5004:5004"
     expose:
@@ -25,4 +26,6 @@ services:
       - collectionnet
 networks:
   collectionnet:
-    driver: overlay
+    external: true
+
+      
