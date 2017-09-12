@@ -15,8 +15,8 @@ services:
       - servicenet
     deploy:
       mode: global
-      placement:
-        constraints: [node.role == manager]
+#      placement:
+#        constraints: [node.role == manager]
 
   collectionservice:
     image: hanwuji99/microservice30_collectionservice
