@@ -14,6 +14,7 @@ services:
     networks:
       - servicenet
     deploy:
+      mode: global
       placement:
         constraints: [node.role == manager]
 
