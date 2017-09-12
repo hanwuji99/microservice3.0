@@ -8,11 +8,11 @@ services:
     ports:
       - "27017:27017"
     restart:  always
-    networks:
-      - servicenet
-    deploy:
-      placement:
-        constraints: [node.role == manager]
+#    networks:
+#      - servicenet
+#    deploy:
+#      placement:
+#        constraints: [node.role == manager]
 
   collectionservice:
     build:
@@ -28,13 +28,13 @@ services:
 #    expose:
 #      - "5004"
     restart:  always
-    networks:
-      - servicenet
-    deploy:
-      mode: replicated
-      replicas: 1
-      placement:
-        constraints: [node.role == worker]
+#    networks:
+#      - servicenet
+#    deploy:
+#      mode: replicated
+#      replicas: 1
+#      placement:
+#        constraints: [node.role == worker]
 
   userservice:
     build:
@@ -50,11 +50,11 @@ services:
 #    expose:
 #      - "5000"
     restart:  always
-    networks:
-      - servicenet
-    deploy:
-      placement:
-        constraints: [node.role == manager]
+#    networks:
+#      - servicenet
+#    deploy:
+#      placement:
+#        constraints: [node.role == manager]
 
   movieservice:
     build:
@@ -70,14 +70,14 @@ services:
 #    expose:
 #      - "5001"
     restart:  always
-    networks:
-      - servicenet
-    deploy:
-      mode: replicated
-      replicas: 1
-      placement:
-        constraints: [node.role == worker]
-networks:
-  servicenet:
-    driver: overlay
+#    networks:
+#      - servicenet
+#    deploy:
+#      mode: replicated
+#      replicas: 1
+#      placement:
+#        constraints: [node.role == worker]
+#networks:
+#  servicenet:
+#    driver: overlay
 
