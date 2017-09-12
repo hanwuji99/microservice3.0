@@ -3,21 +3,22 @@ version: "3"
 
 services:
   mongodbservice:
-    image: mongo
+    image: hanwuji99/mongo
 #    container_name: mongodb_container
     ports:
       - "27017:27017"
     restart:  always
-#    networks:
-#      - servicenet
-#    deploy:
-#      placement:
-#        constraints: [node.role == manager]
+    networks:
+      - servicenet
+    deploy:
+      placement:
+        constraints: [node.role == manager]
 
   collectionservice:
-    build:
-        context: ./collectionservice/
-        dockerfile: Dockerfile
+#    build:
+#        context: ./collectionservice/
+#        dockerfile: Dockerfile
+    image: hanwuji99/microservice30_collectionservice
     volumes:
        - .:/var/www/microservice3.0/collectionservice
 #    container_name: collection_app
@@ -27,19 +28,20 @@ services:
       - "5004:5004"
 #    expose:
 #      - "5004"
-    restart:  always
-#    networks:
-#      - servicenet
-#    deploy:
-#      mode: replicated
-#      replicas: 1
-#      placement:
-#        constraints: [node.role == worker]
+#    restart:  always
+    networks:
+      - servicenet
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == worker]
 
   userservice:
-    build:
-        context: ./userservice/
-        dockerfile: Dockerfile
+#    build:
+#        context: ./userservice/
+#        dockerfile: Dockerfile
+    image: hanwuji99/microservice30_userservice
     volumes:
       - .:/var/www/microservice3.0/userservice
 #    container_name: user_app
@@ -50,16 +52,17 @@ services:
 #    expose:
 #      - "5000"
     restart:  always
-#    networks:
-#      - servicenet
-#    deploy:
-#      placement:
-#        constraints: [node.role == manager]
+    networks:
+      - servicenet
+    deploy:
+      placement:
+        constraints: [node.role == manager]
 
   movieservice:
-    build:
-        context: ./movieservice/
-        dockerfile: Dockerfile
+#    build:
+#        context: ./movieservice/
+#        dockerfile: Dockerfile
+    image: hanwuji99/microservice30_movieservice
     volumes:
       - .:/var/www/microservice3.0/movieservice
 #    container_name: movie_app
@@ -70,14 +73,14 @@ services:
 #    expose:
 #      - "5001"
     restart:  always
-#    networks:
-#      - servicenet
-#    deploy:
-#      mode: replicated
-#      replicas: 1
-#      placement:
-#        constraints: [node.role == worker]
-#networks:
-#  servicenet:
-#    driver: overlay
+    networks:
+      - servicenet
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == worker]
+networks:
+  servicenet:
+    driver: overlay
 
