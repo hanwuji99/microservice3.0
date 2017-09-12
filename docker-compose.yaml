@@ -8,11 +8,11 @@ services:
     ports:
       - "27017:27017"
     restart:  always
-    networks:
-      - servicenet
-    deploy:
-      placement:
-        constraints: [node.role == manager]
+#    networks:
+#      - servicenet
+#    deploy:
+#      placement:
+#        constraints: [node.role == manager]
 
   collectionservice:
     build:
