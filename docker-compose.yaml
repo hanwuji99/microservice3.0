@@ -4,9 +4,12 @@ version: "3"
 services:
   mongodbservice:
     image: hanwuji99/mongo
-#    container_name: mongodb_container
+    container_name: mongodb_container
+    hostname: mongodbservice
     ports:
       - "27017:27017"
+    expose:
+      - "27017"
     restart:  always
     networks:
       - servicenet
@@ -15,20 +18,18 @@ services:
         constraints: [node.role == manager]
 
   collectionservice:
-#    build:
-#        context: ./collectionservice/
-#        dockerfile: Dockerfile
     image: hanwuji99/microservice30_collectionservice
     volumes:
        - .:/var/www/microservice3.0/collectionservice
-#    container_name: collection_app
+    container_name: collection_app
+    hostname: collectionservice
     depends_on:
         - mongodbservice
     ports:
       - "5004:5004"
-#    expose:
-#      - "5004"
-#    restart:  always
+    expose:
+      - "5004"
+    restart:  always
     networks:
       - servicenet
     deploy:
@@ -38,19 +39,17 @@ services:
         constraints: [node.role == worker]
 
   userservice:
-#    build:
-#        context: ./userservice/
-#        dockerfile: Dockerfile
     image: hanwuji99/microservice30_userservice
     volumes:
       - .:/var/www/microservice3.0/userservice
-#    container_name: user_app
+    container_name: user_app
+    hostname: userservice
     depends_on:
         - mongodbservice
     ports:
       - "5000:5000"
-#    expose:
-#      - "5000"
+    expose:
+      - "5000"
     restart:  always
     networks:
       - servicenet
@@ -65,13 +64,14 @@ services:
     image: hanwuji99/microservice30_movieservice
     volumes:
       - .:/var/www/microservice3.0/movieservice
-#    container_name: movie_app
+    container_name: movie_app
+    hostname: movieservice
     depends_on:
         - mongodbservice
     ports:
       - "5001:5001"
-#    expose:
-#      - "5001"
+    expose:
+      - "5001"
     restart:  always
     networks:
       - servicenet
