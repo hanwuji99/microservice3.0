@@ -4,7 +4,7 @@ version: "3"
 services:
   mongodbservice:
     image: mongo
-    container_name: mongodb_container
+#    container_name: mongodb_container
     ports:
       - "27017:27017"
     restart:  always
@@ -20,13 +20,13 @@ services:
         dockerfile: Dockerfile
     volumes:
        - .:/var/www/microservice3.0/collectionservice
-    container_name: collection_app
+#    container_name: collection_app
     depends_on:
         - mongodbservice
     ports:
       - "5004:5004"
-    expose:
-      - "5004"
+#    expose:
+#      - "5004"
     restart:  always
     networks:
       - servicenet
@@ -42,13 +42,13 @@ services:
         dockerfile: Dockerfile
     volumes:
       - .:/var/www/microservice3.0/userservice
-    container_name: user_app
+#    container_name: user_app
     depends_on:
         - mongodbservice
     ports:
       - "5000:5000"
-    expose:
-      - "5000"
+#    expose:
+#      - "5000"
     restart:  always
     networks:
       - servicenet
@@ -62,13 +62,13 @@ services:
         dockerfile: Dockerfile
     volumes:
       - .:/var/www/microservice3.0/movieservice
-    container_name: movie_app
+#    container_name: movie_app
     depends_on:
         - mongodbservice
     ports:
       - "5001:5001"
-    expose:
-      - "5001"
+#    expose:
+#      - "5001"
     restart:  always
     networks:
       - servicenet
