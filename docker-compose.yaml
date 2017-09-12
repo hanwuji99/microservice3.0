@@ -14,9 +14,10 @@ services:
     networks:
       - servicenet
     deploy:
-      mode: global
-#      placement:
-#        constraints: [node.role == manager]
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == worker]
 
   collectionservice:
     image: hanwuji99/microservice30_collectionservice
@@ -58,31 +59,31 @@ services:
       mode: replicated
       replicas: 1
       placement:
-        constraints: [node.role == manager]
-
-  movieservice:
-#    build:
-#        context: ./movieservice/
-#        dockerfile: Dockerfile
-    image: hanwuji99/microservice30_movieservice
-    volumes:
-      - .:/var/www/microservice3.0/movieservice
-    container_name: movie_app
-    hostname: movieservice
-    depends_on:
-        - mongodbservice
-    ports:
-      - "5001:5001"
-    expose:
-      - "5001"
-    restart:  always
-    networks:
-      - servicenet
-    deploy:
-      mode: replicated
-      replicas: 1
-      placement:
         constraints: [node.role == worker]
+
+#  movieservice:
+##    build:
+##        context: ./movieservice/
+##        dockerfile: Dockerfile
+#    image: hanwuji99/microservice30_movieservice
+#    volumes:
+#      - .:/var/www/microservice3.0/movieservice
+#    container_name: movie_app
+#    hostname: movieservice
+#    depends_on:
+#        - mongodbservice
+#    ports:
+#      - "5001:5001"
+#    expose:
+#      - "5001"
+#    restart:  always
+#    networks:
+#      - servicenet
+#    deploy:
+#      mode: replicated
+#      replicas: 1
+#      placement:
+#        constraints: [node.role == worker]
 networks:
   servicenet:
     driver: overlay
