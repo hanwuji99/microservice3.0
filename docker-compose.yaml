@@ -18,7 +18,7 @@ services:
     image: hanwuji99/mongo:latest
     hostname: collectionmongodb
     ports:
-      - "27017:27017"
+      - "27018:27017"
     networks:
       - servicenet
     deploy:
@@ -30,7 +30,7 @@ services:
     image: hanwuji99/mongo:latest
     hostname: moviemongodb
     ports:
-      - "27017:27017"
+      - "27019:27017"
     networks:
       - servicenet
     deploy:
