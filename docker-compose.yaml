@@ -8,8 +8,8 @@ services:
     hostname: mongodbservice
     ports:
       - "27017:27017"
-#    expose:
-#      - "27017"
+    expose:
+      - "27017"
     restart:  always
     networks:
       - servicenet
@@ -25,12 +25,12 @@ services:
        - .:/var/www/microservice3.0/collectionservice
 #    container_name: collection_app
     hostname: collectionservice
-#    depends_on:
-#        - mongodbservice
+    depends_on:
+        - mongodbservice
     ports:
       - "5004:5004"
-#    expose:
-#      - "5004"
+    expose:
+      - "5004"
     restart:  always
     networks:
       - servicenet
@@ -46,12 +46,12 @@ services:
       - .:/var/www/microservice3.0/userservice
 #    container_name: user_app
     hostname: userservice
-#    depends_on:
-#        - mongodbservice
+    depends_on:
+        - mongodbservice
     ports:
       - "5000:5000"
-#    expose:
-#      - "5000"
+    expose:
+      - "5000"
     restart:  always
     networks:
       - servicenet
@@ -61,6 +61,29 @@ services:
       placement:
         constraints: [node.role == worker]
 
+  movieservice:
+#    build:
+#        context: ./movieservice/
+#        dockerfile: Dockerfile
+    image: hanwuji99/microservice30_movieservice
+    volumes:
+      - .:/var/www/microservice3.0/movieservice
+#    container_name: movie_app
+    hostname: movieservice
+    depends_on:
+        - mongodbservice
+    ports:
+      - "5001:5001"
+    expose:
+      - "5001"
+    restart:  always
+    networks:
+      - servicenet
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == worker]
 networks:
   servicenet:
     driver: overlay
