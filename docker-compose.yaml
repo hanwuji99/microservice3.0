@@ -70,7 +70,7 @@ services:
         constraints: [node.hostname == hope1]
 
   movieservice:
-      image: hanwuji99/microservice30_movieservice
+    image: hanwuji99/microservice30_movieservice
     hostname: movieservice
     depends_on:
         - moviemongodb
