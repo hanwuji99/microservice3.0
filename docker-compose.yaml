@@ -35,10 +35,10 @@ services:
     networks:
       - servicenet
     deploy:
-      mode: global
-#      replicas: 3
-#      placement:
-#        constraints: [node.role == worker]
+      mode: replicated
+      replicas: 3
+      placement:
+        constraints: [node.role == worker]
 
   userservice:
     image: hanwuji99/microservice30_userservice:latest
