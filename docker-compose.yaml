@@ -25,8 +25,8 @@ services:
        - .:/var/www/microservice3.0/collectionservice
     container_name: collection_app
     hostname: collectionservice
-    depends_on:
-        - mongodbservice
+#    depends_on:
+#        - mongodbservice
     ports:
       - "5004:5004"
     expose:
@@ -46,8 +46,8 @@ services:
       - .:/var/www/microservice3.0/userservice
     container_name: user_app
     hostname: userservice
-    depends_on:
-        - mongodbservice
+#    depends_on:
+#        - mongodbservice
     ports:
       - "5000:5000"
     expose:
