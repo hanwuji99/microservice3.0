@@ -2,10 +2,10 @@
 version: "3"
 
 services:
-  mongodbservice:
+  usermongodb:
     image: hanwuji99/mongo:latest
 #    container_name: mongodb_container
-    hostname: mongodbservice
+    hostname: usermongodb
     ports:
       - "27017:27017"
     expose:
@@ -18,6 +18,39 @@ services:
       replicas: 1
       placement:
         constraints: [node.role == manager]
+  collectionmongodb:
+    image: hanwuji99/mongo:latest
+#    container_name: mongodb_container
+    hostname: collectionmongodb
+    ports:
+      - "27018:27018"
+    expose:
+      - "27018"
+    restart:  always
+    networks:
+      - servicenet
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+  moviemongodb:
+    image: hanwuji99/mongo:latest
+#    container_name: mongodb_container
+    hostname: moviemongodb
+    ports:
+      - "27019:27019"
+    expose:
+      - "27019"
+    restart:  always
+    networks:
+      - servicenet
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+
 
   collectionservice:
     image: hanwuji99/microservice30_collectionservice:latest
@@ -26,7 +59,7 @@ services:
 #    container_name: collection_app
     hostname: collectionservice
     depends_on:
-        - mongodbservice
+        - collectionmongodb
     ports:
       - "5004:5004"
     expose:
@@ -47,7 +80,7 @@ services:
 #    container_name: user_app
     hostname: userservice
     depends_on:
-        - mongodbservice
+        - usermongodb
     ports:
       - "5000:5000"
     expose:
@@ -71,7 +104,7 @@ services:
 #    container_name: movie_app
     hostname: movieservice
     depends_on:
-        - mongodbservice
+        - moviemongodb
     ports:
       - "5001:5001"
     expose:
