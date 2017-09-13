@@ -4,120 +4,87 @@ version: "3"
 services:
   usermongodb:
     image: hanwuji99/mongo:latest
-#    container_name: mongodb_container
     hostname: usermongodb
     ports:
       - "27017:27017"
-    expose:
-      - "27017"
-    restart:  always
     networks:
       - servicenet
     deploy:
       mode: replicated
       replicas: 1
       placement:
-        constraints: [node.role == manager]
+        constraints: [node.hostname == hope1]
   collectionmongodb:
     image: hanwuji99/mongo:latest
-#    container_name: mongodb_container
     hostname: collectionmongodb
     ports:
-      - "27018:27018"
-    expose:
-      - "27018"
-    restart:  always
+      - "27017:27017"
     networks:
       - servicenet
     deploy:
       mode: replicated
       replicas: 1
       placement:
-        constraints: [node.role == manager]
+        constraints: [node.hostname == hope2]
   moviemongodb:
     image: hanwuji99/mongo:latest
-#    container_name: mongodb_container
     hostname: moviemongodb
     ports:
-      - "27019:27019"
-    expose:
-      - "27019"
-    restart:  always
+      - "27017:27017"
     networks:
       - servicenet
     deploy:
       mode: replicated
       replicas: 1
       placement:
-        constraints: [node.role == manager]
-
+        constraints: [node.hostname == hope3]
 
   collectionservice:
     image: hanwuji99/microservice30_collectionservice:latest
-    volumes:
-       - .:/var/www/microservice3.0/collectionservice
-#    container_name: collection_app
     hostname: collectionservice
     depends_on:
         - collectionmongodb
     ports:
       - "5004:5004"
-    expose:
-      - "5004"
-    restart:  always
     networks:
       - servicenet
     deploy:
       mode: replicated
       replicas: 1
       placement:
-        constraints: [node.role == worker]
+        constraints: [node.hostname == hope2]
 
   userservice:
     image: hanwuji99/microservice30_userservice:latest
-    volumes:
-      - .:/var/www/microservice3.0/userservice
-#    container_name: user_app
     hostname: userservice
     depends_on:
         - usermongodb
     ports:
       - "5000:5000"
-    expose:
-      - "5000"
-    restart:  always
     networks:
       - servicenet
     deploy:
       mode: replicated
       replicas: 1
       placement:
-        constraints: [node.role == worker]
+        constraints: [node.hostname == hope1]
 
   movieservice:
-#    build:
-#        context: ./movieservice/
-#        dockerfile: Dockerfile
-    image: hanwuji99/microservice30_movieservice
-    volumes:
-      - .:/var/www/microservice3.0/movieservice
-#    container_name: movie_app
+      image: hanwuji99/microservice30_movieservice
     hostname: movieservice
     depends_on:
         - moviemongodb
     ports:
       - "5001:5001"
-    expose:
-      - "5001"
-    restart:  always
     networks:
       - servicenet
     deploy:
       mode: replicated
       replicas: 1
       placement:
-        constraints: [node.role == worker]
+        constraints: [node.hostname == hope3]
 networks:
   servicenet:
     driver: overlay
+
 
